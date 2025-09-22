@@ -14,11 +14,11 @@ export async function WelcomeWidget() {
 
   return (
     <Card className="flex flex-col lg:flex-row items-start gap-10 p-10 w-full">
-      <Image src="/logo/1024.png" alt="Logo" width={256} height={256} className="w-64 h-64" />
+      <Image src="/logo/birosign_logo_bw.png" alt="Logo" width={256} height={256} className="w-64 h-64 mx-auto" />
       <div className="flex flex-col">
         <CardTitle className="flex items-center justify-between">
           <span className="text-2xl font-bold">
-            <ColoredText>Hey, I&apos;m TaxHacker 👋</ColoredText>
+            <ColoredText>Hey, I&apos;m Birosign Document Parser 👋</ColoredText>
           </span>
           <Button
             variant="outline"

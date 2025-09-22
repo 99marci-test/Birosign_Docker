@@ -1,7 +1,7 @@
 import { addFieldAction, deleteFieldAction, editFieldAction } from "@/app/(app)/settings/actions"
 import { CrudTable } from "@/components/settings/crud"
 import { getCurrentUser } from "@/lib/auth"
-import { getFields } from "@/models/fields"
+import { createField, deleteField, getFields } from "@/models/fields"
 import { Prisma } from "@/prisma/client"
 
 export default async function FieldsSettingsPage() {
@@ -10,7 +10,7 @@ export default async function FieldsSettingsPage() {
   const fieldsWithActions = fields.map((field) => ({
     ...field,
     isEditable: true,
-    isDeletable: field.isExtra,
+    isDeletable: true,
   }))
 
   return (

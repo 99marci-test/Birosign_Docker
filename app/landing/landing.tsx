@@ -12,7 +12,7 @@ export default function LandingPage() {
           <Link href="/" className="flex items-center gap-2 group">
             <div className="relative">
               <Image
-                src="/logo/256.png"
+                src="/logo/birosign_logo_bw.png"
                 alt="Logo"
                 width={32}
                 height={32}
@@ -20,7 +20,7 @@ export default function LandingPage() {
               />
               <div className="absolute inset-0 bg-gradient-to-r from-pink-600 to-indigo-600 rounded-full opacity-20 blur-md group-hover:opacity-40 transition-opacity duration-300" />
             </div>
-            <ColoredText className="text-2xl font-bold">TaxHacker</ColoredText>
+            <ColoredText className="text-2xl font-bold">Birosign Docker</ColoredText>
           </Link>
           <div className="flex gap-1 md:gap-4 text-xs md:text-sm">
             <Link
@@ -86,17 +86,6 @@ export default function LandingPage() {
       <section className="py-20 px-8 relative">
         <div className="absolute inset-0 bg-gradient-to-b from-white/50 to-indigo-50/50" />
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="text-center mb-16">
-            <h2 className="flex flex-col gap-3 mb-4">
-              <span className="text-6xl font-bold bg-gradient-to-r from-pink-600 to-indigo-600 bg-clip-text text-transparent">
-                F∗ck Taxes
-              </span>
-              <span className="text-4xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
-                TaxHacker saves you time, money and nerves
-              </span>
-            </h2>
-          </div>
-
           {/* AI Scanner Feature */}
           <div className="flex flex-wrap items-center gap-12 mb-20 bg-gradient-to-br from-white via-pink-50/30 to-indigo-50/30 p-8 rounded-3xl shadow-xl ring-2 ring-gradient-to-r from-pink-200 to-indigo-200 hover:shadow-2xl transition-all duration-500 group">
             <div className="flex-1 min-w-60">
@@ -327,7 +316,7 @@ export default function LandingPage() {
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-pink-600 to-indigo-600 bg-clip-text text-transparent">
-              Choose Your Version of TaxHacker
+              Choose Your Version of Birosign Docker
             </h2>
           </div>
           <div className="grid md:grid-cols-2 gap-16">

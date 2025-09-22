@@ -41,7 +41,7 @@ export default async function SelfHostedWelcomePage() {
 
   return (
     <Card className="w-full max-w-xl mx-auto p-8 flex flex-col items-center justify-center gap-4">
-      <Image src="/logo/512.png" alt="Logo" width={144} height={144} className="w-36 h-36" />
+      <Image src="/logo/birosign_logo_bw.png" alt="Logo" width={144} height={144} className="w-36 h-36" />
       <CardTitle className="text-3xl font-bold ">
         <ColoredText>TaxHacker: Self-Hosted Edition</ColoredText>
       </CardTitle>
