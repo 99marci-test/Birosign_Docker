@@ -9,21 +9,6 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export function formatCurrency(total: number, currency: string) {
-  try {
-    return new Intl.NumberFormat(LOCALE, {
-      style: "currency",
-      currency: currency,
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-      useGrouping: true,
-    }).format(total / 100)
-  } catch (error) {
-    // can happen with custom currencies and crypto
-    return `${currency} ${total / 100}`
-  }
-}
-
 export function formatBytes(bytes: number) {
   if (bytes === 0) return "0 Bytes"
 

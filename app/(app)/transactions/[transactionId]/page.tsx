@@ -5,7 +5,6 @@ import { Card } from "@/components/ui/card"
 import { getCurrentUser } from "@/lib/auth"
 import { incompleteTransactionFields } from "@/lib/stats"
 import { getCategories } from "@/models/categories"
-import { getCurrencies } from "@/models/currencies"
 import { getFields } from "@/models/fields"
 import { getFilesByTransactionId } from "@/models/files"
 import { getProjects } from "@/models/projects"
@@ -24,7 +23,6 @@ export default async function TransactionPage({ params }: { params: Promise<{ tr
 
   const files = await getFilesByTransactionId(transactionId, user.id)
   const categories = await getCategories(user.id)
-  const currencies = await getCurrencies(user.id)
   const settings = await getSettings(user.id)
   const fields = await getFields(user.id)
   const projects = await getProjects(user.id)
@@ -50,11 +48,7 @@ export default async function TransactionPage({ params }: { params: Promise<{ tr
         <div className="w-full p-5">
           <TransactionEditForm
             transaction={transaction}
-            categories={categories}
-            currencies={currencies}
-            settings={settings}
             fields={fields}
-            projects={projects}
           />
 
           {transaction.text && (

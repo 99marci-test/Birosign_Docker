@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Table, TableBody, TableCell, TableFooter, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { calcTotalPerCurrency, isTransactionIncomplete } from "@/lib/stats"
-import { cn, formatCurrency } from "@/lib/utils"
+import { cn } from "@/lib/utils"
 import { Category, Field, Project, Transaction } from "@/prisma/client"
 import { formatDate } from "date-fns"
 import { ArrowDownIcon, ArrowUpIcon, File } from "lucide-react"
@@ -25,142 +25,13 @@ type FieldWithRenderer = Field & {
   renderer: FieldRenderer
 }
 
-export const standardFieldRenderers: Record<string, FieldRenderer> = {
-  name: {
-    name: "Name",
-    code: "name",
-    classes: "font-medium min-w-[120px] max-w-[300px] overflow-hidden",
-    sortable: true,
-  },
-  merchant: {
-    name: "Merchant",
-    code: "merchant",
-    classes: "min-w-[120px] max-w-[250px] overflow-hidden",
-    sortable: true,
-  },
-  issuedAt: {
-    name: "Date",
-    code: "issuedAt",
-    classes: "min-w-[100px]",
-    sortable: true,
-    formatValue: (transaction: Transaction) =>
-      transaction.issuedAt ? formatDate(transaction.issuedAt, "yyyy-MM-dd") : "",
-  },
-  projectCode: {
-    name: "Project",
-    code: "projectCode",
-    sortable: true,
-    formatValue: (transaction: Transaction & { project: Project }) =>
-      transaction.projectCode ? (
-        <Badge className="whitespace-nowrap" style={{ backgroundColor: transaction.project?.color }}>
-          {transaction.project?.name || ""}
-        </Badge>
-      ) : (
-        "-"
-      ),
-  },
-  categoryCode: {
-    name: "Category",
-    code: "categoryCode",
-    sortable: true,
-    formatValue: (transaction: Transaction & { category: Category }) =>
-      transaction.categoryCode ? (
-        <Badge className="whitespace-nowrap" style={{ backgroundColor: transaction.category?.color }}>
-          {transaction.category?.name || ""}
-        </Badge>
-      ) : (
-        "-"
-      ),
-  },
-  files: {
-    name: "Files",
-    code: "files",
-    sortable: false,
-    formatValue: (transaction: Transaction) => (
-      <div className="flex items-center gap-2 text-sm">
-        <File className="w-4 h-4" />
-        {(transaction.files as string[]).length}
-      </div>
-    ),
-  },
-  total: {
-    name: "Total",
-    code: "total",
-    classes: "text-right",
-    sortable: true,
-    formatValue: (transaction: Transaction) => (
-      <div className="text-right text-lg">
-        <div
-          className={cn(
-            { income: "text-green-500", expense: "text-red-500", other: "text-black" }[transaction.type || "other"],
-            "flex flex-col justify-end"
-          )}
-        >
-          <span>
-            {transaction.total && transaction.currencyCode
-              ? formatCurrency(transaction.total, transaction.currencyCode)
-              : transaction.total}
-          </span>
-          {transaction.convertedTotal &&
-            transaction.convertedCurrencyCode &&
-            transaction.convertedCurrencyCode !== transaction.currencyCode && (
-              <span className="text-sm -mt-1">
-                ({formatCurrency(transaction.convertedTotal, transaction.convertedCurrencyCode)})
-              </span>
-            )}
-        </div>
-      </div>
-    ),
-    footerValue: (transactions: Transaction[]) => {
-      const totalPerCurrency = calcTotalPerCurrency(transactions)
-      return (
-        <div className="flex flex-col">
-          {Object.entries(totalPerCurrency).map(([currency, total]) => (
-            <div key={currency} className="text-sm first:text-base">
-              {formatCurrency(total, currency)}
-            </div>
-          ))}
-        </div>
-      )
-    },
-  },
-  convertedTotal: {
-    name: "Converted Total",
-    code: "convertedTotal",
-    classes: "text-right",
-    sortable: true,
-    formatValue: (transaction: Transaction) => (
-      <div
-        className={cn(
-          { income: "text-green-500", expense: "text-red-500", other: "text-black" }[transaction.type || "other"],
-          "flex flex-col justify-end text-right text-lg"
-        )}
-      >
-        {transaction.convertedTotal && transaction.convertedCurrencyCode
-          ? formatCurrency(transaction.convertedTotal, transaction.convertedCurrencyCode)
-          : transaction.convertedTotal}
-      </div>
-    ),
-  },
-  currencyCode: {
-    name: "Currency",
-    code: "currencyCode",
-    classes: "text-right",
-    sortable: true,
-  },
-}
-
 const getFieldRenderer = (field: Field): FieldRenderer => {
-  if (standardFieldRenderers[field.code as keyof typeof standardFieldRenderers]) {
-    return standardFieldRenderers[field.code as keyof typeof standardFieldRenderers]
-  } else {
     return {
       name: field.name,
       code: field.code,
       classes: "",
       sortable: false,
     }
-  }
 }
 
 export function TransactionList({ transactions, fields = [] }: { transactions: Transaction[]; fields?: Field[] }) {

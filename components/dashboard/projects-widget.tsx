@@ -15,7 +15,7 @@ export function ProjectsWidget({
 }) {
   return (
     <div className="grid gap-4 md:grid-cols-2">
-      {projects.map((project) => (
+      {/* {projects.map((project) => (
         <Link key={project.code} href={`/transactions?projectCode=${project.code}`}>
           <Card className="bg-gradient-to-tr from-white via-slate-50/40 to-purple-50/30 border-slate-200/60 hover:shadow-xl transition-all duration-500 hover:scale-[1.01] group cursor-pointer">
             <CardHeader className="group-hover:translate-y-[-2px] transition-transform duration-300">
@@ -48,21 +48,7 @@ export function ProjectsWidget({
                 </div>
                 <div className="bg-gradient-to-br from-red-50/80 to-rose-50/60 p-3 rounded-xl border border-red-100/50">
                   <div className="text-sm font-medium text-muted-foreground">Expenses</div>
-                  <div className="text-2xl font-bold text-red-500">
-                    {Object.entries(statsPerProject[project.code]?.totalExpensesPerCurrency).map(
-                      ([currency, total]) => (
-                        <div
-                          key={currency}
-                          className="flex flex-col gap-2 font-bold text-red-500 text-base first:text-2xl"
-                        >
-                          {formatCurrency(total, currency)}
-                        </div>
-                      )
-                    )}
-                    {!Object.entries(statsPerProject[project.code]?.totalExpensesPerCurrency).length && (
-                      <div className="font-bold text-base first:text-2xl">0.00</div>
-                    )}
-                  </div>
+                  
                 </div>
                 <div className="bg-gradient-to-br from-violet-50/80 to-indigo-50/60 p-3 rounded-xl border border-violet-100/50">
                   <div className="text-sm font-medium text-muted-foreground">Profit</div>
@@ -86,7 +72,7 @@ export function ProjectsWidget({
             </CardContent>
           </Card>
         </Link>
-      ))}
+      ))} */}
       <Link
         href="/settings/projects"
         className="flex items-center justify-center gap-2 border-dashed border-2 border-gradient-to-r rounded-lg p-6 text-muted-foreground transition-all duration-300 hover:scale-[1.02] hover:shadow-lg group"

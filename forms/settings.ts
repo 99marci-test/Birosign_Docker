@@ -17,11 +17,6 @@ export const settingsFormSchema = z.object({
   is_welcome_message_hidden: z.string().optional(),
 })
 
-export const currencyFormSchema = z.object({
-  code: z.string().max(5),
-  name: z.string().max(32),
-})
-
 export const projectFormSchema = z.object({
   name: z.string().max(128),
   llm_prompt: z.string().max(512).nullable().optional(),

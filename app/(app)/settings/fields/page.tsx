@@ -1,7 +1,7 @@
 import { addFieldAction, deleteFieldAction, editFieldAction } from "@/app/(app)/settings/actions"
 import { CrudTable } from "@/components/settings/crud"
 import { getCurrentUser } from "@/lib/auth"
-import { createField, deleteField, getFields } from "@/models/fields"
+import { getFields } from "@/models/fields"
 import { Prisma } from "@/prisma/client"
 
 export default async function FieldsSettingsPage() {

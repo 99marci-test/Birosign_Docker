@@ -8,7 +8,6 @@ import AnalyzeForm from "@/components/unsorted/analyze-form"
 import { getCurrentUser } from "@/lib/auth"
 import config from "@/lib/config"
 import { getCategories } from "@/models/categories"
-import { getCurrencies } from "@/models/currencies"
 import { getFields } from "@/models/fields"
 import { getUnsortedFiles } from "@/models/files"
 import { getProjects } from "@/models/projects"
@@ -27,7 +26,6 @@ export default async function UnsortedPage() {
   const files = await getUnsortedFiles(user.id)
   const categories = await getCategories(user.id)
   const projects = await getProjects(user.id)
-  const currencies = await getCurrencies(user.id)
   const fields = await getFields(user.id)
   const settings = await getSettings(user.id)
 
@@ -76,7 +74,6 @@ export default async function UnsortedPage() {
                 file={file}
                 categories={categories}
                 projects={projects}
-                currencies={currencies}
                 fields={fields}
                 settings={settings}
               />

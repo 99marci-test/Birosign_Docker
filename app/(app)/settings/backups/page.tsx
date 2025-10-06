@@ -57,7 +57,7 @@ export default function BackupSettingsPage() {
         </div>
         <div className="text-sm text-muted-foreground max-w-xl">
           Inside the archive you will find all the uploaded files, as well as JSON files for transactions, categories,
-          projects, fields, currencies, and settings. You can view, edit or migrate your data to another service.
+          projects, fields, and settings. You can view, edit or migrate your data to another service.
         </div>
       </div>
 

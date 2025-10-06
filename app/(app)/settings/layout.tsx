@@ -37,10 +37,6 @@ const settingsCategories = [
     href: "/settings/projects",
   },
   {
-    title: "Currencies",
-    href: "/settings/currencies",
-  },
-  {
     title: "Backups",
     href: "/settings/backups",
   },

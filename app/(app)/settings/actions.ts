@@ -2,7 +2,6 @@
 
 import {
   categoryFormSchema,
-  currencyFormSchema,
   fieldFormSchema,
   projectFormSchema,
   settingsFormSchema,
@@ -13,7 +12,6 @@ import { getCurrentUser } from "@/lib/auth"
 import { uploadStaticImage } from "@/lib/uploads"
 import { codeFromName, randomHexColor } from "@/lib/utils"
 import { createCategory, deleteCategory, updateCategory } from "@/models/categories"
-import { createCurrency, deleteCurrency, updateCurrency } from "@/models/currencies"
 import { createField, deleteField, updateField } from "@/models/fields"
 import { createProject, deleteProject, updateProject } from "@/models/projects"
 import { SettingsMap, updateSettings } from "@/models/settings"
@@ -140,44 +138,6 @@ export async function deleteProjectAction(userId: string, code: string) {
     return { success: false, error: "Failed to delete project" + error }
   }
   revalidatePath("/settings/projects")
-  return { success: true }
-}
-
-export async function addCurrencyAction(userId: string, data: Prisma.CurrencyCreateInput) {
-  const validatedForm = currencyFormSchema.safeParse(data)
-
-  if (!validatedForm.success) {
-    return { success: false, error: validatedForm.error.message }
-  }
-
-  const currency = await createCurrency(userId, {
-    code: validatedForm.data.code,
-    name: validatedForm.data.name,
-  })
-  revalidatePath("/settings/currencies")
-
-  return { success: true, currency }
-}
-
-export async function editCurrencyAction(userId: string, code: string, data: Prisma.CurrencyUpdateInput) {
-  const validatedForm = currencyFormSchema.safeParse(data)
-
-  if (!validatedForm.success) {
-    return { success: false, error: validatedForm.error.message }
-  }
-
-  const currency = await updateCurrency(userId, code, { name: validatedForm.data.name })
-  revalidatePath("/settings/currencies")
-  return { success: true, currency }
-}
-
-export async function deleteCurrencyAction(userId: string, code: string) {
-  try {
-    await deleteCurrency(userId, code)
-  } catch (error) {
-    return { success: false, error: "Failed to delete currency" + error }
-  }
-  revalidatePath("/settings/currencies")
   return { success: true }
 }
 

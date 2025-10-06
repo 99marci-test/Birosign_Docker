@@ -1,9 +1,8 @@
 "use client"
 import { useState, useRef, useEffect, useCallback } from "react"
-import { FormSelectCurrency } from "@/components/forms/select-currency"
 import { FormInput } from "@/components/forms/simple"
 import { Button } from "@/components/ui/button"
-import { DEFAULT_CURRENCIES, DEFAULT_SETTINGS } from "@/models/defaults"
+import { DEFAULT_SETTINGS } from "@/models/defaults"
 import { selfHostedGetStartedAction } from "../actions"
 import { FormSelect } from "@/components/forms/simple"
 import { PROVIDERS } from "@/lib/llm-providers"
@@ -41,12 +40,6 @@ export default function SelfHostedSetupFormClient({ defaultProvider, defaultApiK
             name: p.label,
             logo: p.logo
           }))}
-        />
-        <FormSelectCurrency
-          title="Default Currency"
-          name="default_currency"
-          defaultValue={DEFAULT_SETTINGS.find((s) => s.code === "default_currency")?.value ?? "EUR"}
-          currencies={DEFAULT_CURRENCIES}
         />
       </div>
       <div>

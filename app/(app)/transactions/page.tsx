@@ -2,7 +2,6 @@ import { ExportTransactionsDialog } from "@/components/export/transactions"
 import { UploadButton } from "@/components/files/upload-button"
 import { TransactionSearchAndFilters } from "@/components/transactions/filters"
 import { TransactionList } from "@/components/transactions/list"
-import { NewTransactionDialog } from "@/components/transactions/new"
 import { Pagination } from "@/components/transactions/pagination"
 import { Button } from "@/components/ui/button"
 import { getCurrentUser } from "@/lib/auth"
@@ -10,7 +9,7 @@ import { getCategories } from "@/models/categories"
 import { getFields } from "@/models/fields"
 import { getProjects } from "@/models/projects"
 import { getTransactions, TransactionFilters } from "@/models/transactions"
-import { Download, Plus, Upload } from "lucide-react"
+import { Download, Upload } from "lucide-react"
 import { Metadata } from "next"
 import { redirect } from "next/navigation"
 
@@ -52,11 +51,6 @@ export default async function TransactionsPage({ searchParams }: { searchParams:
               <span className="hidden md:block">Export</span>
             </Button>
           </ExportTransactionsDialog>
-          <NewTransactionDialog>
-            <Button>
-              <Plus /> <span className="hidden md:block">Add Transaction</span>
-            </Button>
-          </NewTransactionDialog>
         </div>
       </header>
 
@@ -76,12 +70,6 @@ export default async function TransactionsPage({ searchParams }: { searchParams:
               <UploadButton>
                 <Upload /> Analyze New Invoice
               </UploadButton>
-              <NewTransactionDialog>
-                <Button variant="outline">
-                  <Plus />
-                  Add Manually
-                </Button>
-              </NewTransactionDialog>
             </div>
           </div>
         )}

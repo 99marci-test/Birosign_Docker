@@ -171,16 +171,8 @@ model Transaction {
   id                    String    @id @default(uuid()) @db.Uuid
   userId                String    @map("user_id") @db.Uuid
   user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  name                  String?
-  description           String?
-  merchant              String?
-  total                 Int?
-  currencyCode          String?   @map("currency_code")
-  convertedTotal        Int?      @map("converted_total")
-  convertedCurrencyCode String?   @map("converted_currency_code")
   type                  String?   @default("expense")
   items                 Json      @default("[]")
-  note                  String?
   files                 Json      @default("[]")
   extra                 Json?
   category              Category? @relation(fields: [categoryCode, userId], references: [code, userId])
@@ -193,12 +185,7 @@ model Transaction {
   text                  String?
 
   @@index([userId])
-  @@index([projectCode])
-  @@index([categoryCode])
   @@index([issuedAt])
-  @@index([name])
-  @@index([merchant])
-  @@index([total])
   @@map("transactions")
 }
 

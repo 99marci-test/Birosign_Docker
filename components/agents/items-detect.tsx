@@ -1,5 +1,4 @@
-import { formatCurrency } from "@/lib/utils"
-import { Save, Split } from "lucide-react"
+import { Split } from "lucide-react"
 import { Button } from "../ui/button"
 import { TransactionData } from "@/models/transactions"
 import { splitFileIntoItemsAction } from "@/app/(app)/unsorted/actions"
@@ -42,23 +41,6 @@ export const ItemsDetectTool = ({ file, data }: { file?: File; data: Transaction
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="flex flex-col divide-y divide-border">
-        {data.items?.map((item, index) => (
-          <div
-            key={`${item.name || ""}-${item.merchant || ""}-${item.description || ""}-${index}`}
-            className="flex flex-row items-start gap-10 py-2 hover:bg-muted/50 transition-colors"
-          >
-            <div className="flex flex-col flex-1">
-              <div className="text-sm">{item.name}</div>
-              <div className="text-xs text-muted-foreground">{item.description}</div>
-            </div>
-            <div className="font-medium">
-              {formatCurrency((item.total || 0) * 100, item.currencyCode || data.currencyCode || "USD")}
-            </div>
-          </div>
-        ))}
-      </div>
-
       {file && data.items && data.items.length > 1 && (
         <Button variant="outline" onClick={handleSplit} className="mt-2 px-4 py-2" disabled={isSplitting}>
           {isSplitting ? (
